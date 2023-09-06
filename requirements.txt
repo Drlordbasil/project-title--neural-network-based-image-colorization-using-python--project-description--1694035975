@@ -1,0 +1,17 @@
+To determine the Python package requirements needed to run this program, we can examine the `import` statements used in the code. Here is a list of the required Python packages:
+
+- os
+- cv2 (OpenCV)
+- numpy (NumPy)
+- tensorflow (TensorFlow)
+- tkinter (Tkinter)
+- PIL (Pillow)
+
+You can use the following list of package names in a requirements.txt file:
+
+```
+opencv-python
+numpy
+tensorflow
+Pillow
+```
