@@ -28,7 +28,8 @@ class ImageColorizer:
         color_imgs = []
         for img in dataset:
             grayscale = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-            grayscale_dims = grayscale.reshape((grayscale.shape[0], grayscale.shape[1], 1))
+            grayscale_dims = grayscale.reshape(
+                (grayscale.shape[0], grayscale.shape[1], 1))
             grayscale_imgs.append(grayscale_dims)
             color_imgs.append(img)
         return np.array(grayscale_imgs), np.array(color_imgs)
@@ -36,7 +37,8 @@ class ImageColorizer:
     # Neural Network Architecture
     def create_model(self):
         model = models.Sequential()
-        model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(None, None, 1)))
+        model.add(layers.Conv2D(32, (3, 3), activation='relu',
+                  input_shape=(None, None, 1)))
         model.add(layers.MaxPooling2D((2, 2)))
         model.add(layers.Conv2D(64, (3, 3), activation='relu'))
         model.add(layers.MaxPooling2D((2, 2)))
@@ -49,7 +51,8 @@ class ImageColorizer:
     # Model Training
     def train_model(self, X_train, y_train):
         self.model.compile(optimizer='adam', loss='mse')
-        self.model.fit(X_train, y_train, epochs=10, batch_size=32, validation_split=0.2)
+        self.model.fit(X_train, y_train, epochs=10,
+                       batch_size=32, validation_split=0.2)
 
     def train(self):
         # Dataset Preparation
@@ -78,10 +81,12 @@ class UI:
         self.window = tk.Tk()
         self.window.title("Image Colorization Tool")
 
-        self.open_button = tk.Button(self.window, text="Open Image", command=self.open_image)
+        self.open_button = tk.Button(
+            self.window, text="Open Image", command=self.open_image)
         self.open_button.pack()
 
-        self.colorize_button = tk.Button(self.window, text="Colorize Image", command=self.colorize)
+        self.colorize_button = tk.Button(
+            self.window, text="Colorize Image", command=self.colorize)
         self.colorize_button.pack()
 
         self.panel = tk.Label(self.window)
@@ -97,7 +102,8 @@ class UI:
 
     def colorize(self):
         if self.image_colorizer.model is None:
-            messagebox.showinfo("Error", "Model not found. Please train the model first.")
+            messagebox.showinfo(
+                "Error", "Model not found. Please train the model first.")
             return
         file_path = filedialog.askopenfilename()
         grayscale_img = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
