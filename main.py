@@ -1,5 +1,11 @@
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import numpy as np
+import cv2
+import os
 import glob
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+Optimize this Python script:
+
+
 To optimize this Python script, you can make the following changes:
 
 1. Use the `glob` module instead of `os.listdir` to collect the dataset. This will make the dataset collection process more efficient.
